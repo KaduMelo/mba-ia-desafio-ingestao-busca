@@ -1,26 +1,3 @@
-# import os
-# from pathlib import Path
-# from dotenv import load_dotenv
-
-# from langchain_community.document_loaders import PyPDFLoader
-# from langchain_text_splitters import RecursiveCharacterTextSplitter
-# from langchain_openai import OpenAIEmbeddings
-# from langchain_core.documents import Document
-# from langchain_postgres import PGVector
-
-# load_dotenv()
-
-# PDF_PATH = os.getenv("PDF_PATH")
-
-# def ingest_pdf():
-#     pass
-
-
-# if __name__ == "__main__":
-#     ingest_pdf()
-
-
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
