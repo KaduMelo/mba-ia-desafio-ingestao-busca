@@ -1,7 +1,7 @@
 services:
   postgres:
     image: pgvector/pgvector:pg17
-    container_name: postgres_rag
+    container_name: postgres_companies
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -11,7 +11,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d rag"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d rag" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -22,11 +22,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    entrypoint: ["/bin/sh", "-c"]
+    entrypoint: [ "/bin/sh", "-c" ]
     command: >
-      PGPASSWORD=postgres
-      psql "postgresql://postgres@postgres:5432/rag" -v ON_ERROR_STOP=1
-      -c "CREATE EXTENSION IF NOT EXISTS vector;"
+      PGPASSWORD=postgres psql "postgresql://postgres@postgres:5432/rag" -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS vector;"
     restart: "no"
 
 volumes:
