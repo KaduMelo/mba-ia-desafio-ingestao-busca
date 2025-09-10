@@ -1,13 +1,12 @@
 import os
 from dotenv import load_dotenv
-from search import SearchEngine
+from search import search_prompt
 
 def main():
     load_dotenv()
     
     try:
-        engine = SearchEngine()
-        print("🤖 Document Q&A System")
+        print("🤖 Companies Q&A System")
         print("Type 'exit' or 'quit' to end the session\n")
         
         while True:
@@ -21,10 +20,8 @@ def main():
                 continue
                 
             print("\n🔍 Searching...")
-            docs = engine.search_similar(query)
-            
             print("💭 Thinking...")
-            response = engine.get_response(query, docs)
+            response = search_prompt(query)
             
             print(f"\n🤖 Answer: {response}\n")
             
