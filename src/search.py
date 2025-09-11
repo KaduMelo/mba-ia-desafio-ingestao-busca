@@ -35,10 +35,16 @@ Resposta: "Não tenho informações necessárias para responder sua pergunta."
 Pergunta: "Você acha isso bom ou ruim?"
 Resposta: "Não tenho informações necessárias para responder sua pergunta."
 
+EXEMPLOS DE FORMATAÇÃO:
+Pergunta: "Qual o faturamento da TechCorp?"
+Resposta Ruim: "R$ 5.000.000"
+Resposta Boa: "O faturamento da TechCorp foi de 5 milhões de reais."
+
+
 PERGUNTA DO USUÁRIO:
 {query}
 
-RESPONDA A "PERGUNTA DO USUÁRIO"
+RESPONDA A "PERGUNTA DO USUÁRIO" EM UMA FRASE COMPLETA:
 """
 
 def search_prompt(query: str) -> str:
@@ -65,11 +71,11 @@ def search_prompt(query: str) -> str:
     add_context = RunnableLambda(lambda summaries: {"context": context,"query": query})
 
     template_prompt = PromptTemplate(
-    input_variables=["contex", "query"],
-    template=PROMPT_TEMPLATE
+        input_variables=["contex", "query"],
+        template=PROMPT_TEMPLATE
     )
     
-    llm_en = ChatOpenAI(model="gpt-5-mini", temperature=0)
+    llm_en = ChatOpenAI(model="gpt-5-nano", temperature=0)
     chain = add_context | template_prompt | llm_en | StrOutputParser()
 
     return chain.invoke({"query": query})
